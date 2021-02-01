@@ -1,5 +1,15 @@
+# test file
 test.c
+
+# objects
+*.o
 obj/*
+
+# libraries
+*.a
+
+# executables
+*.out
 
 # macOS
 .DS_Store
