@@ -6,54 +6,53 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:53:53 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/02 13:07:24 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/02 18:47:32 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
+#include "../include/types.h"
 
 int	type_d(void)
 {
 	int	n;
 
 	n = va_arg(g_var->args, int);
-	ft_putnbr_fd(n, 1);
-	return (0);
+	if (!(g_var->buffer = ft_strdup(ft_itoa(n))))
+		return (-1);
+	return (print());
 }
 
 int	type_c(void)
 {
-	int	c;
+	char	c;
 
 	c = va_arg(g_var->args, int);
-	ft_putchar_fd(c, 1);
-	g_var->printed++;
-	return (0);
+	if (!(g_var->buffer = malloc(2)))
+		return (-1);
+	g_var->buffer[0] = c;
+	g_var->buffer[1] = '\0';
+	return (print());
 }
 
 int	type_s(void)
 {
 	char	*s;
 
-	s = va_arg(g_var->args, char*);
-	ft_putstr_fd(s, 1);
-	g_var->printed += ft_strlen(s);
-	return (0);
-}
-
-int	type_p(void)
-{
-	char	*s;
-
-	s = va_arg(g_var->args, char*);
-	ft_putstr_fd(s, 1);
-	return (0);
+	if (!(s = va_arg(g_var->args, char*)))
+		return (print_null());
+	if (!(g_var->buffer = ft_strdup(s)))
+		return (-1);
+	return (print());
 }
 
 int	type_percent(void)
 {
-	ft_putchar_fd('%', 1);
-	return (0);
+	if (!(g_var->buffer = malloc(2)))
+		return (-1);
+	g_var->buffer[0] = '%';
+	g_var->buffer[1] = '\0';
+	return (print());
 }
 
 int	types(void)
