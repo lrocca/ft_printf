@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 18:50:12 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/02 18:31:09 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/03 16:31:23 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 
 # include <stdarg.h>
 # include "../libft/libft.h"
+
+# define BASE10 "0123456789"
+# define BASE16 "0123456789abcdef"
+# define BASE16X "0123456789ABCDEF"
 
 int				ft_printf(const char *f, ...);
 int				flags(void);
@@ -31,6 +35,7 @@ typedef	struct	s_opt
 	int			width;
 	int			precision;
 	int			printed;
+	char		type;
 	char		*buffer;
 	va_list		args;
 	const char	*format;
