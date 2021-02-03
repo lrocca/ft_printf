@@ -6,7 +6,7 @@
 #    By: lrocca <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/27 18:25:00 by lrocca            #+#    #+#              #
-#    Updated: 2021/02/03 14:50:23 by lrocca           ###   ########.fr        #
+#    Updated: 2021/02/03 15:17:44 by lrocca           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,14 @@ SRC			=	$(addprefix $(SRCDIR)/,$(FILES))
 OBJ			= 	$(patsubst $(SRCDIR)%,$(OBJDIR)%,$(SRC:.c=.o))
 OBJDIR		=	./obj
 SRCDIR		=	./src
+LIBFT		=	./libft/libft.a
 
-all: libft $(NAME)
+all: $(LIBFT) $(NAME)
 
 $(NAME): $(OBJ)
 	ar rcs $@ $^
 
-libft:
+$(LIBFT):
 	make -C ./libft
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
@@ -35,8 +36,8 @@ $(OBJS): | $(OBJDIR)
 $(OBJDIR):
 	mkdir $(OBJDIR)
 
-test: $(NAME)
-	gcc test.c $^ libft/libft.a && ./a.out && rm ./a.out
+test: all
+	gcc test.c $(NAME) libft/libft.a && ./a.out && rm ./a.out
 
 clean:
 	rm -f $(OBJ)
