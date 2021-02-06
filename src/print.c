@@ -6,13 +6,13 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:27:29 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/06 18:16:41 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/06 19:28:50 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-static void	fill(char padding[2], size_t len)
+static int	fill(char padding[2], size_t len)
 {
 	char	*s;
 
@@ -22,31 +22,32 @@ static void	fill(char padding[2], size_t len)
 	{
 		while ((size_t)g_var->width > len + g_var->negative)
 		{
-			s = ft_strjoin(padding, g_var->buffer);
+			if (!(s = ft_strjoin(padding, g_var->buffer)))
+				return (-1);
 			free(g_var->buffer);
 			g_var->buffer = s;
 			len = ft_strlen(g_var->buffer);
 		}
 	}
 	else
-	{
 		while ((size_t)g_var->width > len + g_var->negative)
 		{
-			s = ft_strjoin(g_var->buffer, padding);
+			if (!(s = ft_strjoin(g_var->buffer, padding)))
+				return (-1);
 			free(g_var->buffer);
 			g_var->buffer = s;
 			len = ft_strlen(g_var->buffer);
 		}
-	}
+	return (0);
 }
 
-static void	precision(void)
+static int	precision(void)
 {
 	char	*s;
 	size_t	len;
 
 	if (g_var->precision < 0 || g_var->type == 'c')
-		return ;
+		return (0);
 	if (g_var->type == 'p' && g_var->buffer[0] == '0' && g_var->precision == 0)
 		g_var->buffer[0] = '\0';
 	else if (g_var->type == 's')
@@ -57,15 +58,17 @@ static void	precision(void)
 	{
 		while ((size_t)g_var->precision > len)
 		{
-			s = ft_strjoin("0", g_var->buffer);
+			if (!(s = ft_strjoin("0", g_var->buffer)))
+				return (-1);
 			free(g_var->buffer);
 			g_var->buffer = s;
 			len = ft_strlen(g_var->buffer);
 		}
 	}
+	return (0);
 }
 
-static void	width(void)
+static int	width(void)
 {
 	char	*s;
 	char	padding[2];
@@ -75,7 +78,8 @@ static void	width(void)
 	padding[1] = '\0';
 	if (g_var->negative && padding[0] == ' ')
 	{
-		s = ft_strjoin("-", g_var->buffer);
+		if (!(s = ft_strjoin("-", g_var->buffer)))
+			return (-1);
 		free(g_var->buffer);
 		g_var->buffer = s;
 	}
@@ -84,17 +88,20 @@ static void	width(void)
 		fill(padding, len);
 	if (g_var->negative && padding[0] == '0')
 	{
-		s = ft_strjoin("-", g_var->buffer);
+		if (!(s = ft_strjoin("-", g_var->buffer)))
+			return (-1);
 		free(g_var->buffer);
 		g_var->buffer = s;
 	}
+	return (0);
 }
 
 int			print(void)
 {
 	char	*s;
 
-	precision();
+	if (precision() == -1)
+		return (-1);
 	if (g_var->type == 'p')
 	{
 		if (!(s = ft_strjoin("0x", g_var->buffer)))
@@ -102,7 +109,8 @@ int			print(void)
 		free(g_var->buffer);
 		g_var->buffer = s;
 	}
-	width();
+	if (width() == -1)
+		return (-1);
 	g_var->printed += ft_strlen(g_var->buffer);
 	while (*g_var->buffer)
 	{

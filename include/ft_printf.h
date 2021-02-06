@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 18:50:12 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/06 17:19:16 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/06 19:30:05 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define BASE16X "0123456789ABCDEF"
 
 int				ft_printf(const char *f, ...);
-int				flags(void);
+void			flags(void);
 int				types(void);
 int				print(void);
 

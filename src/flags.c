@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 14:22:30 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/06 16:26:59 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/06 19:29:53 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,8 @@ static int	precision(void)
 	return (0);
 }
 
-int			flags(void)
+void		flags(void)
 {
 	while (justify() || padding() || width() || precision())
 		;
-	return (0);
 }

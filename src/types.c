@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:53:53 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/06 17:54:39 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/06 19:31:59 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	type_d(void)
 	if (n < 0)
 	{
 		g_var->negative = 1;
-		s = ft_strdup(g_var->buffer + 1);
+		if (!(s = ft_strdup(g_var->buffer + 1)))
+			return (-1);
 		free(g_var->buffer);
 		g_var->buffer = s;
 	}
