@@ -6,13 +6,35 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 14:22:30 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/02 16:56:21 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/06 16:26:59 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-static void	width(void)
+static int	justify(void)
+{
+	if (*g_var->format == '-')
+	{
+		g_var->justify = 1;
+		g_var->format++;
+		return (1);
+	}
+	return (0);
+}
+
+static int	padding(void)
+{
+	if (*g_var->format == '0')
+	{
+		g_var->padding = '0';
+		g_var->format++;
+		return (1);
+	}
+	return (0);
+}
+
+static int	width(void)
 {
 	if (*g_var->format == '*')
 	{
@@ -23,46 +45,44 @@ static void	width(void)
 			g_var->width *= -1;
 		}
 		g_var->format++;
+		return (1);
 	}
 	else if (ft_isdigit(*g_var->format))
 	{
 		g_var->width = ft_atoi(g_var->format);
 		while (ft_isdigit(*g_var->format))
 			g_var->format++;
+		return (1);
 	}
+	return (0);
 }
 
-static void	precision(void)
+static int	precision(void)
 {
-	g_var->format++;
-	g_var->precision = 0;
-	if (*g_var->format == '*')
+	if (*g_var->format == '.')
 	{
-		g_var->precision = va_arg(g_var->args, int);
 		g_var->format++;
-	}
-	else if (ft_isdigit(*g_var->format))
-	{
-		g_var->precision = ft_atoi(g_var->format);
-		while (ft_isdigit(*g_var->format))
+		g_var->precision = 0;
+		if (*g_var->format == '*')
+		{
+			g_var->precision = va_arg(g_var->args, int);
 			g_var->format++;
+			return (1);
+		}
+		else if (ft_isdigit(*g_var->format))
+		{
+			g_var->precision = ft_atoi(g_var->format);
+			while (ft_isdigit(*g_var->format))
+				g_var->format++;
+			return (1);
+		}
 	}
+	return (0);
 }
 
 int			flags(void)
 {
-	if (*g_var->format == '-')
-	{
-		g_var->justify = 1;
-		g_var->format++;
-	}
-	if (*g_var->format == '0')
-	{
-		g_var->padding = '0';
-		g_var->format++;
-	}
-	width();
-	if (*g_var->format == '.')
-		precision();
+	while (justify() || padding() || width() || precision())
+		;
 	return (0);
 }

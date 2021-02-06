@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:27:29 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/03 19:29:26 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/06 16:10:15 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@ static void	fill(char padding[2], size_t len)
 {
 	char	*s;
 
-	if (!g_var->padding)
+	if (padding[0] == ' ')
 	{
-		while ((size_t)g_var->width > len)
+		g_var->negative = 0;
+	}
+	if (!g_var->justify)
+	{
+		while ((size_t)g_var->width > len + g_var->negative)
 		{
 			s = ft_strjoin(padding, g_var->buffer);
 			free(g_var->buffer);
@@ -28,7 +32,7 @@ static void	fill(char padding[2], size_t len)
 	}
 	else
 	{
-		while ((size_t)g_var->width > len)
+		while ((size_t)g_var->width > len + g_var->negative)
 		{
 			s = ft_strjoin(g_var->buffer, padding);
 			free(g_var->buffer);
@@ -47,7 +51,7 @@ static void	precision(void)
 		return ;
 	if (g_var->type == 's')
 		g_var->buffer[g_var->precision] = '\0';
-	else if (g_var->precision == 0 && g_var->buffer[0] == '0')
+	else if (!g_var->precision && g_var->buffer[0] == '0')
 	{
 		g_var->buffer[0] = '\0';
 		return ;
@@ -66,20 +70,36 @@ static void	precision(void)
 
 static void	width(void)
 {
+	char	*s;
 	char	padding[2];
 	size_t	len;
 
-	padding[0] = g_var->precision >= 0 ? ' ' : g_var->padding;
+	padding[0] = g_var->precision >= 0 || g_var->justify ? ' ' : g_var->padding;
 	padding[1] = '\0';
+	if (g_var->negative && padding[0] == ' ')
+	{
+		s = ft_strjoin("-", g_var->buffer);
+		free(g_var->buffer);
+		g_var->buffer = s;
+	}
 	len = ft_strlen(g_var->buffer);
 	if (len < (size_t)g_var->width)
 		fill(padding, len);
+	if (g_var->negative && padding[0] == '0')
+	{
+		s = ft_strjoin("-", g_var->buffer);
+		free(g_var->buffer);
+		g_var->buffer = s;
+	}
 }
 
 int			print(void)
 {
-	precision();
-	width();
+	if (!g_var->ignore)
+	{
+		precision();
+		width();
+	}
 	g_var->printed += ft_strlen(g_var->buffer);
 	ft_putstr_fd(g_var->buffer, 1);
 	return (0);

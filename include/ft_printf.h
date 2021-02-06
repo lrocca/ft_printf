@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 18:50:12 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/03 16:31:23 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/06 15:09:44 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 
 # include <stdarg.h>
 # include "../libft/libft.h"
+
+# define TYPES "diuxXcsp%"
+# define FLAGS "0123456789-*."
 
 # define BASE10 "0123456789"
 # define BASE16 "0123456789abcdef"
@@ -34,6 +37,8 @@ typedef	struct	s_opt
 	char		padding;
 	int			width;
 	int			precision;
+	int			negative;
+	int			ignore;
 	int			printed;
 	char		type;
 	char		*buffer;

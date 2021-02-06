@@ -6,62 +6,77 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 18:24:21 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/03 16:38:27 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/06 15:17:34 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 #include "../include/types.h"
 
-void	debug(void)
+static int	istype(char c)
 {
-	puts("");
-	puts("FLAGS----------------");
-	printf("justify:\t%5d\n", g_var->justify);
-	printf("padding:\t%5s\n", g_var->padding == ' ' ? "space" : g_var->padding == '0' ? "zero" : "err");
-	printf("width:\t\t%5d\n", g_var->width);
-	printf("precision:\t%5d\n", g_var->precision);
-	printf("type:\t\t%5c\n", g_var->type);
-	puts("---------------------");
-	printf("PRINTED\t\t%5d\n", g_var->printed);
+	int i;
+
+	i = 0;
+	while (TYPES[i])
+	{
+		if (c == TYPES[i])
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
-int		types(void)
+static int	isflag(char c)
 {
-	g_var->type = *g_var->format;
-	if ((g_var->type == 'd' || g_var->type == 'i') && type_d() != -1)
-		return (0);
-	else if (g_var->type == 'u' && type_u() != -1)
-		return (0);
-	else if (g_var->type == 'x' && type_x() != -1)
-		return (0);
-	else if (g_var->type == 'X' && type_xx() != -1)
-		return (0);
-	else if (g_var->type == 'c' && type_c() != -1)
-		return (0);
-	else if (g_var->type == 's' && type_s() != -1)
-		return (0);
-	else if (g_var->type == 'p' && type_p() != -1)
-		return (0);
-	else if (g_var->type == '%' && type_percent() != -1)
-		return (0);
-	return (-1);
+	int i;
+
+	i = 0;
+	while (FLAGS[i])
+	{
+		if (c == FLAGS[i])
+			return (1);
+		i++;
+	}
+	return (0);
 }
 
-int		format(void)
+int			types(void)
+{
+	while (*g_var->format)
+	{
+		if (istype(*g_var->format))
+		{
+			g_var->type = *g_var->format;
+			return (types_fwd());
+		}
+		else if (isflag(*g_var->format))
+		{
+			g_var->ignore++;
+			g_var->format++;
+			continue ;
+		}
+		break ;
+	}
+	return (0);
+}
+
+int			format(void)
 {
 	g_var->format++;
 	g_var->justify = 0;
 	g_var->padding = ' ';
 	g_var->width = 0;
 	g_var->precision = -1;
+	g_var->negative = 0;
+	g_var->ignore = 0;
 	flags();
 	if (types() == -1)
 		return (-1);
 	return (1);
 }
 
-int		ft_printf(const char *f, ...)
+int			ft_printf(const char *f, ...)
 {
 	t_opt	var;
 
@@ -86,6 +101,5 @@ int		ft_printf(const char *f, ...)
 		g_var->format++;
 	}
 	va_end(g_var->args);
-	debug();
 	return (g_var->printed);
 }
