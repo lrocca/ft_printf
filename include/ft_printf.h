@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 18:50:12 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/06 16:57:22 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/06 17:19:16 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef	struct	s_opt
 	char		padding;
 	int			width;
 	int			precision;
+	int			null;
 	int			negative;
 	int			printed;
 	char		type;

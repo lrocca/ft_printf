@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:53:53 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/06 16:58:16 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/06 17:54:39 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,11 @@ int	type_c(void)
 	char	c;
 
 	c = va_arg(g_var->args, int);
+	if (!c)
+		g_var->null = 1;
 	if (!(g_var->buffer = malloc(2)))
 		return (-1);
-	g_var->buffer[0] = c;
+	g_var->buffer[0] = c ? c : 'c';
 	g_var->buffer[1] = '\0';
 	return (print());
 }

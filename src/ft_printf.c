@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 18:24:21 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/06 17:04:25 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/06 17:19:25 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int			format(void)
 	g_var->padding = ' ';
 	g_var->width = 0;
 	g_var->precision = -1;
+	g_var->null = 0;
 	g_var->negative = 0;
 	flags();
 	if (types() == -1)

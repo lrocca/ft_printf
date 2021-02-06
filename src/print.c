@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:27:29 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/06 16:59:45 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/06 17:58:09 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,13 @@ int			print(void)
 	precision();
 	width();
 	g_var->printed += ft_strlen(g_var->buffer);
-	ft_putstr_fd(g_var->buffer, 1);
+	while (*g_var->buffer)
+	{
+		if (*g_var->buffer == 'c' && g_var->null)
+			ft_putchar_fd('\0', 1);
+		else
+			ft_putchar_fd(*g_var->buffer, 1);
+		g_var->buffer++;
+	}
 	return (0);
 }
