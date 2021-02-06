@@ -6,59 +6,33 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 18:24:21 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/06 15:17:34 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/06 17:04:25 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 #include "../include/types.h"
 
-static int	istype(char c)
-{
-	int i;
-
-	i = 0;
-	while (TYPES[i])
-	{
-		if (c == TYPES[i])
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-static int	isflag(char c)
-{
-	int i;
-
-	i = 0;
-	while (FLAGS[i])
-	{
-		if (c == FLAGS[i])
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 int			types(void)
 {
-	while (*g_var->format)
-	{
-		if (istype(*g_var->format))
-		{
-			g_var->type = *g_var->format;
-			return (types_fwd());
-		}
-		else if (isflag(*g_var->format))
-		{
-			g_var->ignore++;
-			g_var->format++;
-			continue ;
-		}
-		break ;
-	}
-	return (0);
+	g_var->type = *g_var->format;
+	if ((g_var->type == 'd' || g_var->type == 'i') && type_d() != -1)
+		return (0);
+	else if (g_var->type == 'u' && type_u() != -1)
+		return (0);
+	else if (g_var->type == 'x' && type_x() != -1)
+		return (0);
+	else if (g_var->type == 'X' && type_xx() != -1)
+		return (0);
+	else if (g_var->type == 'c' && type_c() != -1)
+		return (0);
+	else if (g_var->type == 's' && type_s() != -1)
+		return (0);
+	else if (g_var->type == 'p' && type_p() != -1)
+		return (0);
+	else if (g_var->type == '%' && type_percent() != -1)
+		return (0);
+	return (-1);
 }
 
 int			format(void)
@@ -69,7 +43,6 @@ int			format(void)
 	g_var->width = 0;
 	g_var->precision = -1;
 	g_var->negative = 0;
-	g_var->ignore = 0;
 	flags();
 	if (types() == -1)
 		return (-1);

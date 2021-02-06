@@ -6,14 +6,12 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 18:42:50 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/06 15:05:04 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/06 16:57:10 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPES_H
 # define TYPES_H
-
-int	types_fwd(void);
 
 int	type_d(void);
 int	type_u(void);
