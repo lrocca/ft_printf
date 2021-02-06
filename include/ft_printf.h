@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 18:50:12 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/06 15:09:44 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/06 16:52:34 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int				ft_printf(const char *f, ...);
 int				flags(void);
 int				types(void);
 int				print(void);
-int				print_null(void);
 
 typedef	struct	s_opt
 {

@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:27:29 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/06 16:10:15 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/06 16:52:28 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,4 @@ int			print(void)
 	g_var->printed += ft_strlen(g_var->buffer);
 	ft_putstr_fd(g_var->buffer, 1);
 	return (0);
-}
-
-int			print_null(void)
-{
-	if (!(g_var->buffer = ft_strdup("(null)")))
-		return (-1);
-	return (print());
 }
