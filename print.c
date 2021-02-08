@@ -6,11 +6,11 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:27:29 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/06 19:28:50 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/08 15:34:04 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "ft_printf.h"
 
 static int	fill(char padding[2], size_t len)
 {

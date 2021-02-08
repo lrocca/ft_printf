@@ -6,12 +6,12 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:53:53 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/06 19:31:59 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/08 15:34:10 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
-#include "../include/types.h"
+#include "ft_printf.h"
+#include "types.h"
 
 int	type_d(void)
 {

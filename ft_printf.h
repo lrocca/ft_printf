@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 18:50:12 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/06 19:34:20 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/08 15:34:41 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
-# include "../libft/libft.h"
+# include "libft/libft.h"
 
 # define BASE10 "0123456789"
 # define BASE16 "0123456789abcdef"

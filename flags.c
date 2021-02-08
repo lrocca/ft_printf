@@ -6,11 +6,11 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 14:22:30 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/06 19:29:53 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/08 15:33:27 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "ft_printf.h"
 
 static int	justify(void)
 {
