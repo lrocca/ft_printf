@@ -6,7 +6,7 @@
 #    By: lrocca <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/27 18:25:00 by lrocca            #+#    #+#              #
-#    Updated: 2021/02/08 15:28:15 by lrocca           ###   ########.fr        #
+#    Updated: 2021/02/08 15:45:12 by lrocca           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ LIBFTDIR	=	./libft
 all: $(LIBFT) $(NAME)
 
 $(NAME): $(OBJ)
-	ar rcs $@ $^ $(LIBFT)
+	cp $(LIBFT) $@
+	ar rcs $@ $^
 
 $(LIBFT):
 	make -C $(LIBFTDIR)
