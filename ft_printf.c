@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 18:24:21 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/08 15:33:59 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/09 18:30:28 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int			ft_printf(const char *f, ...)
 	va_start(g_var->args, f);
 	while (*g_var->format)
 	{
-		if (*g_var->format == '%' && *(g_var->format + 1))
+		if (*g_var->format == '%')
 		{
 			if (format() == -1)
 				return (-1);
