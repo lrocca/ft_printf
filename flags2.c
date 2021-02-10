@@ -1,25 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   types.h                                            :+:      :+:    :+:   */
+/*   flags2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/02 18:42:50 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/06 16:57:10 by lrocca           ###   ########.fr       */
+/*   Created: 2021/02/10 16:45:27 by lrocca            #+#    #+#             */
+/*   Updated: 2021/02/10 17:55:25 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TYPES_H
-# define TYPES_H
+#include "flags.h"
 
-int	type_d(void);
-int	type_u(void);
-int	type_x(void);
-int	type_xx(void);
-int	type_c(void);
-int	type_s(void);
-int	type_p(void);
-int	type_percent(void);
+int	p_sign(void)
+{
+	if (*g_var.format == '+')
+	{
+		g_var.sign = 1;
+		g_var.format++;
+		return (1);
+	}
+	return (0);
+}
 
-#endif
+int	p_space(void)
+{
+	if (*g_var.format == ' ')
+	{
+		g_var.space = 1;
+		g_var.format++;
+		return (1);
+	}
+	return (0);
+}
+
+int	p_prefix(void)
+{
+	if (*g_var.format == '#')
+	{
+		g_var.prefix = 1;
+		g_var.format++;
+		return (1);
+	}
+	return (0);
+}

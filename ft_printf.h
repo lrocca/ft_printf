@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 18:50:12 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/08 15:34:41 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/10 17:17:12 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,19 @@
 # define BASE16X "0123456789ABCDEF"
 
 int				ft_printf(const char *f, ...);
+
 void			flags(void);
+
 int				types(void);
+int				type_d(void);
+int				type_u(void);
+int				type_x(void);
+int				type_xx(void);
+int				type_c(void);
+int				type_s(void);
+int				type_p(void);
+int				type_percent(void);
+
 int				print(void);
 
 typedef	struct	s_opt
@@ -33,6 +44,9 @@ typedef	struct	s_opt
 	int			precision;
 	int			null;
 	int			negative;
+	int			sign;
+	int			space;
+	int			prefix;
 	int			printed;
 	char		type;
 	char		*buffer;
@@ -40,6 +54,6 @@ typedef	struct	s_opt
 	const char	*format;
 }				t_opt;
 
-t_opt			*g_var;
+extern t_opt	g_var;
 
 #endif
