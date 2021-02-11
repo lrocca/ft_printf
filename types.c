@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:53:53 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/10 17:07:21 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/11 12:41:16 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,19 @@ int	type_s(void)
 	}
 	else if (!(g_var.buffer = ft_strdup(s)))
 		return (-1);
+	g_var.sign = 0;
+	g_var.space = 0;
 	return (print());
+}
+
+int	type_n(void)
+{
+	int	*n;
+
+	if (!(n = va_arg(g_var.args, int*)))
+		return (-1);
+	*n = g_var.printed;
+	return (0);
 }
 
 int	type_percent(void)

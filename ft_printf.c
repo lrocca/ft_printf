@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/27 18:24:21 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/10 17:42:43 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/11 12:37:06 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int			types(void)
 	else if (g_var.type == 's' && type_s() != -1)
 		return (0);
 	else if (g_var.type == 'p' && type_p() != -1)
+		return (0);
+	else if (g_var.type == 'n' && type_n() != -1)
 		return (0);
 	else if (g_var.type == '%' && type_percent() != -1)
 		return (0);
