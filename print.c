@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 17:27:29 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/11 12:40:32 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/11 16:53:39 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ static int	width(void)
 
 int			print(void)
 {
+	char	*to_free;
+
 	if (g_var.negative)
 		g_var.sign = 1;
 	if (g_var.sign)
@@ -128,6 +130,7 @@ int			print(void)
 	if (width() == -1)
 		return (-1);
 	g_var.printed += ft_strlen(g_var.buffer);
+	to_free = g_var.buffer;
 	while (*g_var.buffer)
 	{
 		if (*g_var.buffer == 'c' && g_var.null)
@@ -136,5 +139,6 @@ int			print(void)
 			ft_putchar_fd(*g_var.buffer, 1);
 		g_var.buffer++;
 	}
+	free(to_free);
 	return (0);
 }

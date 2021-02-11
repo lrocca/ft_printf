@@ -6,7 +6,7 @@
 /*   By: lrocca <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/02 11:53:53 by lrocca            #+#    #+#             */
-/*   Updated: 2021/02/11 12:41:16 by lrocca           ###   ########.fr       */
+/*   Updated: 2021/02/11 16:22:24 by lrocca           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	type_d(void)
 	char	*s;
 
 	n = va_arg(g_var.args, int);
-	if (!(g_var.buffer = ft_strdup(ft_itoa(n))))
+	if (!(g_var.buffer = ft_itoa(n)))
 		return (-1);
 	if (n < 0)
 	{
